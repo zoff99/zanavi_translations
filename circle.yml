@@ -1,0 +1,29 @@
+machine:
+  timezone:
+    Europe/Berlin
+  environment:
+    _ZTR_ZANAVI: /home/ubuntu/zanavi_tr_zanavi
+    _ZTR_NAVITORIG: /home/ubuntu/zanavi_tr_navitorig
+
+dependencies:
+  pre:
+    - sudo apt-get update
+    - sudo apt-get install gettext
+    - sudo apt-get install qrencode
+    - sudo apt-get install bzr
+
+    - mkdir -p "$_ZTR_ZANAVI"
+    - mkdir -p "$_ZTR_NAVITORIG"
+compile:
+  override:
+    - cd "$_ZTR_ZANAVI" && bzr branch lp:zanavi ; ls -al
+    - cd "$_ZTR_NAVITORIG" && bzr branch lp:~zoff/zanavi/navit_orig ; ls -al
+test:
+  override:
+
+    # ------ cleanup -------------
+    - mkdir $CIRCLE_ARTIFACTS/job_logs
+    - mv -v $CIRCLE_ARTIFACTS/stderr_circle_*.txt $CIRCLE_ARTIFACTS/job_logs/ ; exit 0
+    - mv -v $CIRCLE_ARTIFACTS/stdout_circle_*.txt $CIRCLE_ARTIFACTS/job_logs/ ; exit 0
+    # ------ cleanup -------------
+
