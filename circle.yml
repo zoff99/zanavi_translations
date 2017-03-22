@@ -16,8 +16,8 @@ dependencies:
     - mkdir -p "$_ZTR_NAVITORIG"
 compile:
   override:
-    - cd "$_ZTR_ZANAVI" && bzr branch lp:zanavi ; ls -al
-    - cd "$_ZTR_NAVITORIG" && bzr branch lp:~zoff/zanavi/navit_orig ; ls -al
+    - cd "$_ZTR_ZANAVI" && bzr branch lp:zanavi ; ls -al zanavi/
+    - cd "$_ZTR_NAVITORIG" && bzr branch lp:~zoff/zanavi/navit_orig ; ls -al navit_orig/
 test:
   override:
 
