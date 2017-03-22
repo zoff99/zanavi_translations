@@ -16,10 +16,17 @@ dependencies:
     - mkdir -p "$_ZTR_NAVITORIG"
 compile:
   override:
-    - cd "$_ZTR_ZANAVI" && bzr branch lp:zanavi ; ls -al zanavi/
-    - cd "$_ZTR_NAVITORIG" && bzr branch lp:~zoff/zanavi/navit_orig ; ls -al navit_orig/
+    - cd "$_ZTR_ZANAVI" && bzr branch lp:zanavi ; cd zanavi/ ; for i in $(ls -1 *.po);do j=$(basename -s \.po $i); msgfmt ${j}.po -o ${j}.mo ;done
+    - cd "$_ZTR_NAVITORIG" && bzr branch lp:~zoff/zanavi/navit_orig ; cd navit_orig/ ; for i in $(ls -1 *.po);do j=$(basename -s \.po $i); msgfmt ${j}.po -o ${j}.mo ;done
 test:
   override:
+    - cd "$_ZTR_ZANAVI" ; cd zanavi/ ; ls -al
+    - cd "$_ZTR_ZANAVI" ; cd zanavi/ ; ls -1 *.po | wc -l
+    - cd "$_ZTR_ZANAVI" ; cd zanavi/ ; ls -1 *.mo | wc -l
+
+    - cd "$_ZTR_NAVITORIG" ; cd navit_orig/ ; ls -al
+    - cd "$_ZTR_NAVITORIG" ; cd navit_orig/ ; ls -1 *.po | wc -l
+    - cd "$_ZTR_NAVITORIG" ; cd navit_orig/ ; ls -1 *.mo | wc -l
 
     # ------ cleanup -------------
     - mkdir $CIRCLE_ARTIFACTS/job_logs
