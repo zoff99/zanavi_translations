@@ -22,10 +22,14 @@ test:
     - cd "$_ZTR_ZANAVI" ; cd zanavi/ ; ls -al
     - cd "$_ZTR_ZANAVI" ; cd zanavi/ ; ls -1 *.po | wc -l
     - cd "$_ZTR_ZANAVI" ; cd zanavi/ ; ls -1 *.mo | wc -l
+    
+    - zip -r $CIRCLE_ARTIFACTS/zanavi.translations.zip zanavi
 
     - cd "$_ZTR_NAVITORIG" ; cd navit_orig/ ; ls -al
     - cd "$_ZTR_NAVITORIG" ; cd navit_orig/ ; ls -1 *.po | wc -l
     - cd "$_ZTR_NAVITORIG" ; cd navit_orig/ ; ls -1 *.mo | wc -l
+
+    - zip -r $CIRCLE_ARTIFACTS/navit_orig.translations.zip navit_orig
 
     # ------ cleanup -------------
     - mkdir $CIRCLE_ARTIFACTS/job_logs
