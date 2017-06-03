@@ -4,7 +4,6 @@ machine:
   environment:
     _ZTR_ZANAVI: /home/ubuntu/zanavi_tr_zanavi
     _ZTR_NAVITORIG: /home/ubuntu/zanavi_tr_navitorig
-
 dependencies:
   pre:
     - sudo apt-get update
